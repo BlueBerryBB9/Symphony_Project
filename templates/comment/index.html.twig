@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos commentaires{% endblock %}
+
+{% block body %}
+    <h1>Vos commentaires</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Article</th>
+                <th>Nom</th>
+                <th>Date de publication</th>
+                <th>Actions</th>
+                <th>Contenu</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comment in comments %}
+            {% if is_granted('ROLE_ADMIN') or app.user.id == comment.author.id %}
+            <tr>
+                <td class="article_name">{{ comment.article.title }}</td>
+                <td>{{ comment.author.name }}</td>
+                <td>{{ comment.publicationDate ? comment.publicationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_comment_show', {'id': comment.id}) }}">show</a>
+                    <a href="{{ path('app_comment_edit', {'id': comment.id}) }}">edit</a>
+                </td>
+                <td class="toudou">{{ comment.content }}</td>
+            </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_comment_new') }}">Create new</a>
+{% endblock %}

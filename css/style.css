@@ -1,0 +1,79 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3em;
+    font-weight: normal;
+    word-wrap: break-word;
+}
+
+nav {
+    border-bottom: solid #d8d2d2;
+    z-index: 1;
+}
+
+table {
+    max-width: 95%;
+    font-size: smaller;
+    margin: 2em;
+}
+
+.toudou {
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    height: 5em;
+}
+
+.toudou3 {
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.okay {
+    margin: 1.5em;
+}
+
+.article_name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    height: 5em;
+    width: 15em;
+}
+
+.forms {
+    margin: 4% 35%;
+    width: fit-content 20%;
+    background: #f8f8f8;
+    text-align: justify;
+    border-radius: 1.5em;
+    border: solid 2px;
+    padding: 1.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.forms h1 {
+    text-align: center;
+}
+
+.forms select {
+    /* position: relative; */
+    max-width: 20%;
+}
+
+.forms input,
+.forms label,
+.forms textarea {
+    width: 50%;
+    text-align: left;
+}
+
+.forms_include {
+    text-align: left;
+}

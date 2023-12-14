@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les articles{% endblock %}
+
+{% block body %}
+    <h1>Tous les articles</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Date de Publication</th>
+                <th>actions</th>
+                <th>Contenu</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td class="article_name">{{ article.title }}</td>
+                <td>{{ article.author.name }}</td>
+                <td>{{ article.publicationDate ? article.publicationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+                    {% if is_granted('ROLE_ADMIN') or app.user.id == article.author.id %}
+                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+                    {% endif %}
+                </td>
+                <td class="toudou">{{ article.content }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ path('app_article_new') }}">Create new</a>
+{% endblock %}

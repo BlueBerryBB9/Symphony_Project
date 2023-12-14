@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Thèmes{% endblock %}
+
+{% block body %}
+    <h1>Les Thèmes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for theme in themes %}
+            <tr>
+                <td>{{ theme.name }}</td>
+                <td>
+                    <a href="{{ path('app_theme_show', {'id': theme.id}) }}">show</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_theme_edit', {'id': theme.id}) }}">edit</a>
+                    {% endif %}
+                </td>
+                <td class="toudou">{{ theme.description }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_theme_new') }}">Create new</a>
+{% endblock %}
